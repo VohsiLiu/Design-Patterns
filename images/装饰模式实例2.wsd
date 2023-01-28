@@ -1,0 +1,36 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Cipher{
+    + String encrypt(String plainText)
+}
+class SimpleCipher{
+    + String encrypt(String plainText)
+}
+class CipherDecorator{
+    - Cipher cipher
+    + CipherDecorator(Cipher cipher)
+    + String encrypt(String plainText)
+}
+class ComplexCipher{
+    + ComplexCipher(Cipher cipher)
+    + String encrypt(String plainText)
+    + String reverse(String text)
+}
+class AdvancedCipher{
+    + AdvancedCipher(Cipher cipher)
+    + String encrypt(String plainText)
+    + String mod(String text)
+}
+
+Cipher <|.. SimpleCipher
+Cipher <--o "cipher" CipherDecorator
+Cipher <|.. CipherDecorator
+CipherDecorator <|-- ComplexCipher
+CipherDecorator <|-- AdvancedCipher
+
+Cipher -[hidden]down- SimpleCipher
+SimpleCipher -[hidden]left- CipherDecorator
+
+@enduml

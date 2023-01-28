@@ -1,0 +1,22 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+Form1 --> Controller1
+Form2 --> Controller1
+Form3 --> Controller2
+Form4 --> Controller2
+Form5 --> Controller2
+Controller1 --> DAO1
+Controller1 --> DAO2
+Controller2 --> DAO3
+Controller2 --> DAO4
+
+Form1 -[hidden]right-> Form2
+Form2 -[hidden]right-> Form3
+Form3 -[hidden]right-> Form4
+Form4 -[hidden]right-> Form5
+DAO1 -[hidden]right-> DAO2
+DAO2 -[hidden]right-> DAO3
+DAO3 -[hidden]right-> DAO4
+@enduml

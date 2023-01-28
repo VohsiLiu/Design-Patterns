@@ -1,0 +1,20 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class 抽象按钮类
+
+按钮工厂 -down-> 矩形按钮
+按钮工厂 -down-> 圆形按钮
+按钮工厂 -down-> 菱形按钮
+按钮工厂 -down-> 椭圆形按钮
+矩形按钮 -down-|> 抽象按钮类
+圆形按钮 -down-|> 抽象按钮类
+菱形按钮 -down-|> 抽象按钮类
+椭圆形按钮 -down-|> 抽象按钮类
+
+hide circle
+hide methods
+hide members
+
+@enduml

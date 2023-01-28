@@ -1,0 +1,35 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Director{
+    - Builder builder
+    + construct()
+}
+
+note bottom of Director
+builder.builderPartA();
+builder.builderPartB();
+builder.builderPartC();
+return builder.getResult();
+end note
+
+class Builder{
+    + builderPartA()
+    + builderPartB()
+    + builderPartC()
+    + getResult()
+}
+
+class ConcreteBuilder{
+    + builderPartA()
+    + builderPartB()
+    + builderPartC()
+    + getResult()
+}
+
+Director o-> Builder : builder
+Builder <|-- ConcreteBuilder
+ConcreteBuilder -> Product
+
+@enduml

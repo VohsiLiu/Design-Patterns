@@ -1,0 +1,26 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Command{
+    + execute()
+}
+class Receiver{
+    + action()
+}
+class ConcreteCommand{
+    - state
+    + execute()
+}
+
+note right of ConcreteCommand::execute
+receiver.action();
+end note
+
+Invoker o-> Command
+Command <|-- ConcreteCommand
+Client -> Receiver
+Receiver <- ConcreteCommand
+Client .> ConcreteCommand
+
+@enduml

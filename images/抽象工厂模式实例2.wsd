@@ -1,0 +1,36 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface DBFactory{
+    + Connection createConnection()
+    + Statement createStatement()
+}
+class OracleFactory{
+    + Connection createConnection()
+    + Statement createStatement()
+}
+class MySQLFactory{
+    + Connection createConnection()
+    + Statement createStatement()
+}
+
+interface Connection{
+}
+
+interface Statement{
+}
+
+DBFactory <|.. OracleFactory
+DBFactory <|.. MySQLFactory
+Connection <|.up. OracleConnection
+Connection <|.up. MySQLConnection
+Statement <|.up. OracleStatement
+Statement <|.up. MySQLStatement
+
+OracleFactory ..> OracleConnection
+OracleFactory ..> OracleStatement
+MySQLFactory ..> MySQLConnection
+MySQLFactory ..> MySQLStatement
+
+@enduml

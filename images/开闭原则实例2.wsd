@@ -1,0 +1,37 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+note as config
+    config.xml
+end note
+
+note right of config
+    ...
+    <className>CircleButton</className>
+    ...
+end note
+
+class LoginForm {
+    - AbstractButton button
+    + void display()
+}
+
+abstract class AbstractButton {
+    + void view()
+}
+
+class RectangleButton { 
+    + void view()
+}
+
+class CircleButton { 
+    + void view()
+}
+
+LoginForm .up.> config
+LoginForm -right-> AbstractButton
+CircleButton -up-|> AbstractButton
+RectangleButton -up-|> AbstractButton
+
+@enduml

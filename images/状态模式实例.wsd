@@ -1,0 +1,58 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class ForumAccount{
+    - AbstractState state
+    - String name
+    + ForumAccount(String name)
+    + void setState(AbstractState state)
+    + AbstractState getState()
+    + void setName(String name)
+    + String getName()
+    + void downloadFile(int score)
+    + void writeNote(int score)
+    + void replyNote(int score)
+}
+
+abstract class AbstractState{
+    - ForumAccount acc
+    # int point
+    # String stateName
+    + void checkState(int score)
+    + void downloadFile(int score)
+    + void writeNote(int score)
+    + void replyNote(int score)
+    + void setPonit(int point)
+    + int getPoint()
+    + void setStateName(String stateName)
+    + String getStateName()
+}
+
+class PrimaryState{
+    + PrimaryState(AbstractState state)
+    + PrimaryState(ForumAccount acc)
+    + void downloadFile(int score)
+    + void checkState(int score)
+}
+
+class MiddleState{
+    + MiddleState(AbstractState state)
+    + void writeNote(int score)
+    + void checkState(int score)
+}
+
+class HighState{
+    + HighState(AbstractState state)
+    + void writeNote(int score)
+    + void downloadFile(int score)
+    + void checkState(int score)
+}
+
+ForumAccount -> AbstractState : state
+AbstractState -> ForumAccount : acc
+AbstractState <|-- PrimaryState
+AbstractState <|-- MiddleState
+AbstractState <|-- HighState
+
+@enduml

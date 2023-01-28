@@ -1,0 +1,35 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Componet{
+    + operation()
+    + add(Componet c)
+    + remove(Componet c)
+    + getChild(i)
+}
+
+class Leaf{
+    + operation()
+}
+
+class Composite{
+    + operation()
+    + add(Componet c)
+    + remove(Componet c)
+    + getChild(i)
+}
+note left of Composite::operation
+for(Componet child : children){
+    child.operation()
+}
+end note
+
+Client .> Componet
+Componet <|-- Leaf
+Componet <--o "children" Composite
+Componet <|-- Composite
+
+
+
+@enduml

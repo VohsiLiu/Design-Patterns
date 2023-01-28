@@ -1,0 +1,33 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface LogFactory{
+    + Log creatLog()
+}
+class FileLogFactory {
+    + Log creatLog()
+}
+class DatabaseLogFactory {
+    + Log creatLog()
+}
+
+interface Log{
+    + void writeLog()
+}
+class FileLog{
+    + void writeLog()
+}
+class DatabaseLog{
+    + void writeLog()
+}
+
+Client .down.> LogFactory
+Client .down.> Log
+FileLogFactory .up.|> LogFactory
+DatabaseLogFactory .up.|> LogFactory
+FileLog .up.|> Log
+DatabaseLog .up.|> Log
+FileLogFactory .right.> FileLog : <<create>>
+DatabaseLogFactory .right.> DatabaseLog : <<create>>
+@enduml

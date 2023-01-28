@@ -1,0 +1,26 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class AbstractElement{
+    + void add(AbstractElement element)
+    + void remove(AbstractElement element)
+    + AbstractElement get(int i)
+    + void method()
+}
+class File{
+    + void method()
+}
+class Folder{
+    - AbstractElement[] list
+    + void add(AbstractElement element)
+    + void remove(AbstractElement element)
+    + AbstractElement get(int i)
+    + void method()
+}
+
+AbstractElement <|-- File
+AbstractElement <--o "list" Folder
+AbstractElement <|-- Folder
+
+@enduml

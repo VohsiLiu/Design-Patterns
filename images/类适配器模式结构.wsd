@@ -1,0 +1,24 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Target{
+    + request()
+}
+class Adaptee{
+    + specificRequest()
+}
+class Adapter{
+    + request()
+}
+note right of Adapter::request
+specificRequest();
+end note
+
+Client .left> Target
+Target <|.. Adapter
+Adaptee <|-- Adapter
+
+Adaptee -[hidden]right Target
+
+@enduml

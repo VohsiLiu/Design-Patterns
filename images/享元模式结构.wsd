@@ -1,0 +1,41 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class FlyweightFactory{
+    - HashMap flyweights
+    + Flyweight getFlyweight(String key)
+
+}
+note bottom of FlyweightFactory
+if(flyweights.containsKey(key)){
+    return (Flyweight) flyweights.get(key);
+}else{
+    Flyweight fw = new ConcreteFlyweight();
+    flyweights.put(key, fw);
+    return fw;
+}
+end note
+
+interface Flyweight{
+    + operation(extrinsicState)
+}
+
+class ConcreteFlyweight{
+    - intrinsicState;
+    + operation(extrinsicState)
+}
+
+class UnsharedConcreteFlyweight{
+    - allState
+    + operation(extrinsicState)
+}
+
+FlyweightFactory "flyweights" o-> Flyweight
+Flyweight <|.. ConcreteFlyweight
+Flyweight <|.. UnsharedConcreteFlyweight
+
+Flyweight -[hidden]down- UnsharedConcreteFlyweight
+ConcreteFlyweight -left- a
+hide a
+@enduml

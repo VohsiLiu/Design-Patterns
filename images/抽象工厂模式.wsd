@@ -1,0 +1,40 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Factory{
+    + AbstractProductA createProductA()
+    + AbstractProductB createProductB()
+}
+interface AbstractProductA{
+}
+interface AbstractProductB{
+}
+
+class ConcreteFactory1{
+    + AbstractProductA createProductA()
+    + AbstractProductB createProductB()
+}
+class ConcreteFactory2{
+    + AbstractProductA createProductA()
+    + AbstractProductB createProductB()
+}
+
+Client ..> Factory
+Client ..> AbstractProductA
+Client ..> AbstractProductB
+Factory <|.. ConcreteFactory1
+Factory <|.. ConcreteFactory2
+ConcreteProductA1 <|.. AbstractProductA
+ConcreteProductA2 <|.. AbstractProductA
+ConcreteProductB1 <|.. AbstractProductB
+ConcreteProductB2 <|.. AbstractProductB
+ConcreteFactory1 ..> ConcreteProductA1
+ConcreteFactory1 ..> ConcreteProductB1
+ConcreteFactory2 ..> ConcreteProductA2
+ConcreteFactory2 ..> ConcreteProductB2
+
+ConcreteProductA1 .[hidden]right. ConcreteProductA2
+ConcreteProductA2 .[hidden]right. ConcreteProductB1
+ConcreteProductB1 .[hidden]right. ConcreteProductB2
+@enduml

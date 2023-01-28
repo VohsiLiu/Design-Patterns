@@ -1,0 +1,34 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface AbstractPermission{
+    + void modifyUserInfo()
+    + void viewNote()
+    + void publishNote()
+    + void modifyNote()
+    + void setLevel(int level)
+}
+class PermissionProxy{
+    - RealPermission permission
+    + int level
+    + void modifyUserInfo()
+    + void viewNote()
+    + void publishNote()
+    + void modifyNote()
+    + void setLevel(int level)
+}
+class RealPermission{
+    + void modifyUserInfo()
+    + void viewNote()
+    + void publishNote()
+    + void modifyNote()
+    + void setLevel(int level)
+}
+
+Client .> PermissionProxy
+AbstractPermission <|.. PermissionProxy
+AbstractPermission <|.. RealPermission
+PermissionProxy -> RealPermission : "permission"
+
+@enduml

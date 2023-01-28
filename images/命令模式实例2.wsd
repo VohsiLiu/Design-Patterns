@@ -1,0 +1,46 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class FunctionButton{
+    - Command command
+    + void setCommand(Command command)
+    + void click()
+}
+
+class Command{
+    + void execute()
+}
+
+class ExitCommand{
+    - SystemExitClass seObj
+    + void execute()
+}
+note bottom of ExitCommand
+seObj.exit();
+end note
+
+class HelpCommand{
+    - DisplayHelpClass hcObj
+    + void execute()
+}
+note bottom of HelpCommand
+hcObj.display();
+end note
+
+class SystemExitClass{
+    + void exit()
+}
+
+class DisplayHelpClass{
+    + void display()
+}
+
+FunctionButton o-> Command
+Command <|-- HelpCommand
+Command <|-- ExitCommand
+SystemExitClass <-* ExitCommand
+HelpCommand *-> DisplayHelpClass
+
+ExitCommand -[hidden]right- HelpCommand
+@enduml

@@ -1,0 +1,60 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Duck {
+    + quack()
+    + swim()
+    {abstract} + display()
+{method}+ 鸭子的其他方法
+}
+
+note left of Duck
+所有的鸭子都会呱呱
+叫（Quack）也会游
+泳（Swim），所以由
+超类负责处理这部分
+的实现代码。
+end note
+
+note right of Duck::display
+因为每一种鸭子的
+外观都不同，所以
+display() 方法是抽
+象的。
+end note
+
+class MallarDuck {
+    + display()
+}
+
+note left of MallarDuck::display
+每个鸭子子类型
+负责实现自己的
+display() 行为在
+屏幕上显示其外
+观。
+end note
+
+class RedheadDuck {
+    + display()
+}
+
+class "其他类型的鸭子"{
+
+}
+
+
+
+MallarDuck -up-|> Duck
+RedheadDuck -up-|> Duck
+"其他类型的鸭子" -up-|> Duck
+
+hide "其他类型的鸭子" circle
+hide "其他类型的鸭子" methods
+hide "其他类型的鸭子" members
+
+MallarDuck -[hidden]right-> RedheadDuck
+RedheadDuck -[hidden]right-> "其他类型的鸭子"
+
+@enduml

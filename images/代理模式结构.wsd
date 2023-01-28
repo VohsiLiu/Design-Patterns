@@ -1,0 +1,30 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+
+class Proxy{
+    - RealSubject realSubject
+    + preRequest()
+    + request()
+    + postRequest()
+}
+note left of Proxy::request
+preRequest();
+realSubject.request();
+postRequest();
+end note
+
+class Subject{
+    + request()
+}
+class RealSubject{
+    + request()
+}
+
+Client ..> Proxy
+Subject <|-- Proxy
+Subject <|-- RealSubject
+Proxy "realSubject" --> RealSubject
+
+@enduml

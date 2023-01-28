@@ -1,0 +1,35 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+left to right direction
+
+class DeviceFactory{
+    - ArrayList devices
+    - int totalTerminal
+    + DeviceFactory()
+    + NetworkDevice getNetworkDevice(String type)
+    + int getTotalDevice()
+    + int getTotalTerminal()
+}
+interface NetworkDevice{
+    + String getType()
+    + void use()
+}
+class Switch{
+    - String type
+    + Switch(String type)
+    + String getType()
+    + void use()
+}
+class Hub{
+    - String type
+    + Hub(String type)
+    + String getType()
+    + void use()
+}
+
+DeviceFactory "devices" o--> NetworkDevice
+NetworkDevice <|.. Switch
+NetworkDevice <|.. Hub
+
+@enduml

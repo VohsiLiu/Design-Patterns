@@ -1,0 +1,24 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class SessionFacade <<EJBSession>> {
+    - BusinessObject1 object1
+    - BusinessObjectN objectN
+    + void businessMethod1()
+    + void businessMethod2()
+}
+class BusinessObject1 <<EJBSession>> {
+    + void businessMethodA1()
+    + void businessMethodA2()
+}
+class BusinessObjectN <<EJBSession>> {
+    + void businessMethodN1()
+    + void businessMethodN2()
+}
+
+ClientObject .> SessionFacade
+SessionFacade --> BusinessObject1
+SessionFacade --> BusinessObjectN
+
+@enduml

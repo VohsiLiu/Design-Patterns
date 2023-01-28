@@ -1,0 +1,36 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+together {
+    class Form1 
+    class Form2
+    class Form3 
+    class Form4
+    class Form5
+}
+
+together {
+    class DAO1 
+    class DAO2
+    class DAO3 
+    class DAO4
+}
+
+Form1 ---> DAO1
+Form1 ---> DAO2
+Form2 ---> DAO1
+Form2 ---> DAO2
+Form3 ---> DAO2
+Form3 ---> DAO3
+Form3 ---> DAO4
+Form4 ---> DAO2
+Form4 ---> DAO3
+Form4 ---> DAO4
+Form5 ---> DAO2
+Form5 ---> DAO3
+Form5 ---> DAO4
+
+
+
+@enduml

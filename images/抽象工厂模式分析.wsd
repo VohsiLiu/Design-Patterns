@@ -1,0 +1,30 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+AbstractFactory <|-- WindowsFactory
+AbstractFactory <|-- UnixFactory
+AbstractFactory <|-- LinuxFactory
+
+WindowsFactory ..> WindowsText
+WindowsFactory ..> WindowsButton
+UnixFactory ..> UnixText
+UnixFactory ..> UnixButton
+LinuxFactory ..> LinuxText
+LinuxFactory ..> LinuxButton
+WindowsText --|> Text
+UnixText --|> Text
+LinuxText --|> Text
+WindowsButton --|> Button
+UnixButton --|> Button
+LinuxButton --|> Button
+
+WindowsText .[hidden]right. UnixText
+UnixText .[hidden]right. LinuxText
+LinuxText .[hidden]right. WindowsButton
+WindowsButton .[hidden]right. UnixButton
+UnixButton .[hidden]right. LinuxButton
+
+hide members
+hide methods
+@enduml

@@ -1,0 +1,46 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class AbstractFile{
+    + void add(AbstractFile element)
+    + void remove(AbstractFile element)
+    + void display()
+}
+class ImageFile{
+    - String fileName
+    + ImageFile(String fileName)
+    + void add(AbstractFile element)
+    + void remove(AbstractFile element)
+    + void display()
+}
+class VideoFile{
+    - String fileName
+    + VideoFile(String fileName)
+    + void add(AbstractFile element)
+    + void remove(AbstractFile element)
+    + void display()
+}
+class TextFile{
+    - String fileName
+    + TextFile(String fileName)
+    + void add(AbstractFile element)
+    + void remove(AbstractFile element)
+    + void display()
+}
+class Folder{
+    - ArrayList fileList
+    - String fileName
+    + Folder(String fileName)
+    + void add(AbstractFile element)
+    + void remove(AbstractFile element)
+    + void display()
+}
+
+AbstractFile <|-- ImageFile
+AbstractFile <|-- VideoFile
+AbstractFile <|-- TextFile
+AbstractFile <|-- Folder
+AbstractFile <--o "fileList" Folder
+
+@enduml

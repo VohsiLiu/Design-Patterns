@@ -1,0 +1,15 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Container{
+    - Component[] component
+}
+
+Component <|-- Checkbox
+Component <|-- Button
+Component <|-- TextComponent
+Component <|-- Container
+Component <--o "component" Container
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Product {
+}
+
+class Factory {
+    + Product factoryMethod(String arg)
+}
+
+note left of Factory::factoryMethod
+if (arg.equalsIgnoreCase("A")) {
+    return new ConcreteProductA();
+} else if (arg.equalsIgnoreCase("B")) {
+    return new ConcreteProductB();
+}else {
+    ...
+}
+end note
+
+ConcreteProductA .up.|> Product
+ConcreteProductB .up.|> Product
+Factory .up.> ConcreteProductA
+Factory .up.> ConcreteProductB
+
+ConcreteProductA -[hidden]right-> ConcreteProductB
+@enduml

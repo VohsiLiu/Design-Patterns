@@ -1,0 +1,27 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Implementor{
+    + operationImpl()
+}
+class Abstraction{
+    + operation()
+}
+class RefinedAbstraction{
+    + operation()
+}
+class  ConcreteImplementorA{
+    + operationImpl()
+}
+class  ConcreteImplementorB{
+    + operationImpl()
+}
+
+Client ..> Abstraction
+Abstraction "impl" o-> Implementor
+Abstraction <|-- RefinedAbstraction
+Implementor <|.. ConcreteImplementorA
+Implementor <|.. ConcreteImplementorB
+
+@enduml

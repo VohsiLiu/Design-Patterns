@@ -1,0 +1,33 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface ServiceInterface{
+    + void serviceMethod1()
+    + void serviceMethod2()
+    + void serviceMethod3()
+}
+abstract class AbstractServiceClass{
+    + void serviceMethod1()
+    + void serviceMethod2()
+    + void serviceMethod3()
+}
+class ConcreteServiceClass{
+    + void serviceMethod1()
+    + void serviceMethod2()
+    + void serviceMethod3()
+}
+note left of ServiceInterface
+适配者接口
+end note
+note left of AbstractServiceClass
+默认适配器类
+end note
+note left of ConcreteServiceClass
+具体业务类
+end note
+
+ServiceInterface <|.. AbstractServiceClass
+AbstractServiceClass <|-- ConcreteServiceClass
+
+@enduml

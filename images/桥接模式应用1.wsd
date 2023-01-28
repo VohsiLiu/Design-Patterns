@@ -1,0 +1,11 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+Java应用程序 o-> 运行平台
+Java应用程序 <|-- Java应用程序1
+Java应用程序 <|-- Java应用程序2
+运行平台 <|-- Windows
+运行平台 <|-- Unix
+
+@enduml

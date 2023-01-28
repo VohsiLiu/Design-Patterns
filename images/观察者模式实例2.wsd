@@ -1,0 +1,41 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class LoginEvent{
+    - String userName
+    - String password
+    + LoginEvent()
+    + void setUserName(String userName)
+    + String getUserName()
+    + void setPassword(String password)
+    + String getPassword()
+}
+abstract class LoginBean{
+    - LoginEventListener lel
+    - LoginEvent le
+    + LoginBean()
+    + void addLoginEventListener(LoginEventListener lel)
+    + void fireLoginEventListener(
+        Object object, String userName, String password)
+    + void actionPerformed(ActionEvent event)
+}
+interface LoginEventListener{
+    + void validateLogin(LoginEvent evnet)
+}
+class LoginValidatorA{
+    + LoginValidatorA()
+    + void validateLogin(LoginEvent evnet)
+}
+class LoginValidatorB{
+    + LoginValidatorB()
+    + void validateLogin(LoginEvent evnet)
+}
+
+LoginEvent <-- "le" LoginBean
+LoginEvent <-- LoginEventListener
+LoginBean "lel" -> LoginEventListener
+LoginEventListener <|.. LoginValidatorA
+LoginEventListener <|.. LoginValidatorB
+
+@enduml

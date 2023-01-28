@@ -1,0 +1,33 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class NewDBUtil {
+    + Connection getConnection()
+}
+
+class DBUtil {
+    + Connection getConnection()
+}
+
+class StudentDAO {
+    - DBUtil dbOperator
+    + void setDBOperator(DBUtil dbOperator)
+    + StudentDAO findStudentById(String id)
+    + List findAllStudents()
+    + int save(StudentDTO student)
+}
+
+class TeacherDAO{
+    - DBUtil dbOperator
+    + void setDBOperator(DBUtil dbOperator)
+    + TeacherDAO findTeacherById(String id)
+    + List findAllTeachers()
+    + int save(TeacherDTO teacher)
+}
+
+NewDBUtil -down-|> DBUtil
+StudentDAO o-up-> DBUtil
+TeacherDAO o-up-> DBUtil
+
+@enduml

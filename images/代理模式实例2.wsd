@@ -1,0 +1,37 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Calculator{
+    + double add(double x, double y)
+    + double sub(double x, double y)
+    + double mul(double x, double y)
+    + double div(double x, double y)
+}
+class ProxyCalculator{
+    - RealCalculator real
+    + void init()
+    + double add(double x, double y)
+    + double sub(double x, double y)
+    + double mul(double x, double y)
+    + double div(double x, double y)
+}
+note left of ProxyCalculator::init
+real = new RealCalculator();
+end note
+note left of ProxyCalculator::add
+real.add(x, y);
+end note
+
+class RealCalculator{
+    + double add(double x, double y)
+    + double sub(double x, double y)
+    + double mul(double x, double y)
+    + double div(double x, double y)
+}
+
+Calculator <|.. ProxyCalculator
+Calculator <|.. RealCalculator
+ProxyCalculator "real" -> RealCalculator
+
+@enduml

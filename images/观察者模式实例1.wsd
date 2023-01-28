@@ -1,0 +1,29 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class MySubject{
+    # ArrayList observers
+    + void attach(MyObserver obs)
+    + vodi detach(MyObserver obs)
+    + void cry()
+}
+interface MyObserver{
+    + void response()
+}
+class Cat{
+    + void cry()
+}
+class Mouse{
+    + void response()
+}
+class Dog{
+    + void response()
+}
+
+MySubject -> MyObserver
+MySubject <|-- Cat
+MyObserver <|.. Mouse
+MyObserver <|.. Dog
+
+@enduml

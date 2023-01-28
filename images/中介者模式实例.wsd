@@ -1,0 +1,50 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class AbstractChatroom{
+    + void register(Member member)
+    + void sendText(String from, String to,
+    String message)
+    + void sendImage(String from, String to,
+    String image)
+}
+class Member{
+    # AbstractChatroom chatroom
+    # String name
+    + ChatMember(String name)
+    + String getName()
+    + void setName(String name)
+    + AbstractChatroom getChatroom()
+    + void setChatroom(AbstractChatroom chatroom)
+    + void sendText(Sting to, String message)
+    + void sendImage(Sting to, String image)
+    + void receiveText(Sting from, String message)
+    + void receiveImage(Sting from, String message)
+}
+class ChatGroup{
+    - Hashtable member
+    + void register(Member member)
+    + void sendText(String from, String to,
+    String message)
+    + void sendImage(String from, String to,
+    String image)
+}
+class DiamondMember{
+    + DiamondMember(String name)
+    + void sendText(Sting to, String message)
+    + void sendImage(Sting to, String image)
+}
+class CommonMember{
+    + CommonMember(String name)
+    + void sendText(Sting to, String message)
+    + void sendImage(Sting to, String image)
+}
+
+AbstractChatroom <- Member
+AbstractChatroom <|-- ChatGroup
+Member "0..*" <--  "1..1" ChatGroup
+Member <|-- DiamondMember
+Member <|-- CommonMember
+
+@enduml

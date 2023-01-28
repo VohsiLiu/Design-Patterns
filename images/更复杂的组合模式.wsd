@@ -1,0 +1,13 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+Component <|-- Leaf
+Component <|-- Composite
+Component <--o Composite
+Leaf <|-- LeafA
+Leaf <|-- LeafB
+Composite <|-- SubCompositeA
+Composite <|-- SubCompositeB
+
+@enduml

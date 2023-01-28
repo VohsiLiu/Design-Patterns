@@ -1,0 +1,26 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class AbstractClass{
+    + templateMethod()
+    + primitiveOperation1()
+    + primitiveOperation2()
+    + primitiveOperation3()
+}
+note left of AbstractClass::templateMethod
+...
+primitiveOperation1();
+...
+primitiveOperation2();
+...
+primitiveOperation3();
+end note
+
+class ConcreteClass{
+    + primitiveOperation1()
+    + primitiveOperation2()
+}
+
+AbstractClass <|-- ConcreteClass
+@enduml

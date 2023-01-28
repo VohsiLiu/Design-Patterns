@@ -1,0 +1,42 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Subject{
+    + attach(Observer obs)
+    + detach(Observer obs)
+    + notify()
+}
+note left of Subject::notify
+for (obs : observers) {
+    obs.update();
+}
+end note
+
+class ConcreteSubject{
+    - subjectState
+    + getState()
+    + setState()
+}
+note left of ConcreteSubject::getState
+return subjectState;
+end note
+
+interface Observer{
+    + update()
+}
+
+class ConcreteObserver{
+    - observerState
+    + update()
+}
+note bottom of ConcreteObserver
+observerState = subject.getState();
+end note
+
+Subject -> Observer
+Observer <|.. ConcreteObserver
+Subject <|-- ConcreteSubject
+ConcreteSubject <- ConcreteObserver
+
+@enduml

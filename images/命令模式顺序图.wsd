@@ -1,0 +1,25 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+participant Client
+
+create Receiver
+Client -> Receiver : new Receiver()
+create Command
+Client -> Command : new Command(Receiver)
+create Invoker
+Client -> Invoker : new Invoker(Command)
+
+activate Invoker
+Invoker -> Command : call()
+deactivate Invoker
+
+activate Command
+Command -> Receiver : execute()
+deactivate Command
+
+activate Receiver
+Receiver -> Receiver : action()
+
+@enduml

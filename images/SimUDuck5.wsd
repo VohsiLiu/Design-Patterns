@@ -1,0 +1,79 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface FlyBehavior {
+    + fly()
+}
+
+note left of FlyBehavior
+这是一个接口，所有飞行
+类都实现它，所有新的飞
+行类都必须实现 fly() 方法
+end note
+
+interface QuackBehavior {
+    + quack()
+}
+
+note right of QuackBehavior
+呱呱叫行为也一样，一个
+接口只包含一个需要实现
+的 quack() 方法
+end note
+
+class FlyWithWings {
+    + fly()
+}
+
+note bottom of FlyWithWings
+这里实现了所有有翅
+膀的鸭子飞行动作
+end note
+
+class FlyNoWay {
+    + fly()
+}
+
+note bottom of FlyNoWay
+这里实现了所有不会
+飞的鸭子的动作
+end note
+
+class Quack {
+    + quack()
+}
+
+note bottom of Quack
+真的呱呱叫
+end note
+
+class Squeak {
+    + quack()
+}
+
+note bottom of Squeak
+名为呱呱叫，其实
+是吱吱叫
+end note
+
+class MuteQuack {
+    + quack()
+}
+
+note bottom of MuteQuack
+名为呱呱叫，其
+实不出声
+end note
+
+FlyWithWings .up.|> FlyBehavior
+FlyNoWay .up.|> FlyBehavior
+Quack .up.|> QuackBehavior
+Squeak .up.|> QuackBehavior
+MuteQuack .up.|> QuackBehavior
+
+FlyBehavior -[hidden]right-> QuackBehavior
+Quack -[hidden]right-> Squeak
+Squeak -[hidden]right-> MuteQuack
+
+@enduml

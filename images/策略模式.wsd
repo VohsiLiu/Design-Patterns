@@ -1,0 +1,33 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+left to right direction
+
+class Context {
+    ContextInterface()
+}
+
+abstract class Strategy {
+    AlgorithmInterface()
+}
+
+class ConcreteStrategyA {
+    AlgorithmInterface()
+}
+
+class ConcreteStrategyB {
+    AlgorithmInterface()
+}
+
+class ConcreteStrategyC {
+    AlgorithmInterface()
+}
+
+Context "strategy" o---> Strategy
+
+
+ConcreteStrategyA .up.|> Strategy
+ConcreteStrategyB .up.|> Strategy
+ConcreteStrategyC .up.|> Strategy
+
+@enduml

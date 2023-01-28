@@ -1,0 +1,27 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+participant client
+
+activate client
+create concreteSubject
+client -> concreteSubject : new()
+create concreteObserver
+client -> concreteObserver : new()
+deactivate client
+
+activate concreteSubject
+concreteSubject -> concreteSubject : attach()
+activate concreteSubject
+concreteSubject -> concreteObserver : notify()
+
+deactivate concreteSubject
+
+deactivate concreteSubject
+
+activate concreteObserver
+concreteObserver -> concreteObserver : update()
+
+
+@enduml

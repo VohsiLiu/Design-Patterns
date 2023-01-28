@@ -1,0 +1,61 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Controller{
+    - AbstractCommand openCommand
+    - AbstractCommand closeCommand
+    - AbstractCommand changeCommand
+    + Controller(AbstractCommand openCommand,\nAbstractCommand closeCommand,\nAbstractCommand changeCommand)
+    + void open()
+    + void close()
+    + void change()
+}
+
+class AbstractCommand{
+    + void execute()
+}
+
+class Television{
+    + void open()
+    + void close()
+    + void change()
+}
+
+class TVOpenCommand{
+    - Television tv
+    + TVOpenCommand()
+    + void execute()
+}
+note bottom of TVOpenCommand
+tv.open();
+end note
+
+class TVCloseCommand{
+    - Television tv
+    + TVCloseCommand()
+    + void execute()
+}
+note bottom of TVCloseCommand
+tv.close();
+end note
+
+class TVChangeCommand{
+    - Television tv
+    + TVChangeCommand()
+    + void execute()
+}
+note bottom of TVChangeCommand
+tv.changeChannel();
+end note
+
+Controller o-> AbstractCommand
+AbstractCommand <|-- TVOpenCommand
+AbstractCommand <|-- TVCloseCommand
+AbstractCommand <|-- TVChangeCommand
+
+TVOpenCommand "tv" --> Television
+TVCloseCommand "tv" --> Television
+TVChangeCommand "tv" --> Television
+
+@enduml

@@ -1,0 +1,48 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Command{
+    + addCommand(Command command)
+    + removeCommand(Command command)
+    + getCommand(int i)
+    + execute()
+}
+
+class ConcreteCommandA{
+    + execute()
+}
+
+class ConcreteCommandB{
+    + execute()
+}
+
+class ReceiverA{
+    + action()
+}
+
+class ReceiverB{
+    + action()
+}
+
+class CompositeCommand{
+    - ArrayList<Command> commands
+    + addCommand(Command command)
+    + removeCommand(Command command)
+    + getCommand(int i)
+    + execute()
+}
+note bottom of CompositeCommand
+for (Command command : commands) {
+    command.execute();
+}
+end note
+
+Invoker o-> Command
+Command <|-- ConcreteCommandA
+Command <|-- ConcreteCommandB
+Command "*" <--o "1" CompositeCommand 
+ConcreteCommandA --> ReceiverA
+ConcreteCommandB --> ReceiverB
+
+@enduml

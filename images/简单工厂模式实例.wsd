@@ -1,0 +1,35 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+left to right direction
+
+class User {
+    + void sameOperation()
+    + void diffOperation()
+}
+
+class Employee {
+    + void diffOperation()
+}
+
+class Manager {
+    + void diffOperation()
+}
+
+class Administrator {
+    + void diffOperation()
+}
+
+class UserFactory {
+    + User getUser(int permission)
+}
+
+User <|-down- Employee
+User <|-down- Manager
+User <|-down- Administrator
+UserFactory .up.> Employee
+UserFactory .up.> Manager
+UserFactory .up.> Administrator
+
+@enduml

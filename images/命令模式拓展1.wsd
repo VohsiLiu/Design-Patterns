@@ -1,0 +1,28 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class CalculatorForm{
+    - AbstractCommand command
+    + void setCommand(AbstractCommand command)
+    + void compute(int value)
+    + void undo()
+}
+class AbstractCommand{
+    + int execute(int value)
+    + int undo()
+}
+class Addr{
+    + int add(int value)
+}
+class AddCommand{
+    - Addr addr
+    + int execute(int value)
+    + int undo()
+}
+
+CalculatorForm o-> AbstractCommand
+AbstractCommand <|-- AddCommand
+Addr <-* AddCommand
+
+@enduml

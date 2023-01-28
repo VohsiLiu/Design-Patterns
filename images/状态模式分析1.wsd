@@ -1,0 +1,19 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+state 空闲
+
+空闲 : do/预订
+空闲 : do/入住
+已预订 : do/入住
+已预订 : do/取消预订
+已入住 : do/退房
+
+空闲 -> 已预订 : 预订房间
+已预订 <- 空闲 : 取消预订
+空闲 --> 已入住 : 住进房间
+空闲 <-- 已入住 : 退房
+已预订 --> 已入住 : 住进房间
+
+@enduml

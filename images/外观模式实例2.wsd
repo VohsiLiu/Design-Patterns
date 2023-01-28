@@ -1,0 +1,39 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class EncryptFacade{
+    - FileReader reader
+    - CipherMachine cipher
+    - FileWriter writer
+    + EncryptFacade()
+    + void fileEncrypt(String fileNameSrc,
+    String fileNameDes)
+}
+note left of EncryptFacade::EncryptFacade()
+reader = new FileReader();
+cipher = new CipherMachine();
+writer = new FileWriter();
+end note
+
+note left of EncryptFacade::fileEncrypt
+String plainStr = reader.read(fileNameSrc);
+String encryptStr = cipher.encrypt(plainStr);
+writer.write(encryptStr, fileNameDes)
+end note
+
+class FileReader{
+    + String read(String fileNameSrc)
+}
+class CipherMachine{
+    + String encrypt(String plainText)
+}
+class FileWriter{
+    + void write(String encryptText, String fileNameDes)
+}
+
+EncryptFacade "reader" --> FileReader
+EncryptFacade "cipher" --> CipherMachine
+EncryptFacade "writer" --> FileWriter
+
+@enduml

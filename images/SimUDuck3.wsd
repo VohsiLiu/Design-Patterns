@@ -1,0 +1,54 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Duck {
+    + swim()
+    {abstract} + display()
+{method}+ 鸭子的其他方法
+}
+
+interface Flyable {
+    + fly()
+}
+
+interface Quackable {
+    + quack()
+}
+
+class MallarDuck {
+    + display()
+    + fly()
+    + quack()
+}
+
+class RedheadDuck {
+    + display()
+    + fly()
+    + quack()
+}
+
+class RubberDuck { 
+    + display()
+    + quack()
+}
+
+class DecoyDuck { 
+    + display()
+}
+
+MallarDuck -up-|> Duck
+RedheadDuck -up-|> Duck
+RubberDuck -up-|> Duck
+DecoyDuck -up-|> Duck
+
+MallarDuck .up.|> Flyable
+MallarDuck .up.|> Quackable
+RedheadDuck .up.|> Flyable
+RedheadDuck .up.|> Quackable
+RubberDuck .up.|> Quackable
+
+MallarDuck -[hidden]right-> RedheadDuck
+RedheadDuck -[hidden]right-> RubberDuck
+RubberDuck -[hidden]right-> DecoyDuck
+@enduml

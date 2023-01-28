@@ -1,0 +1,28 @@
+@startuml 
+
+left to right direction
+skinparam DefaultFontName PingFangSC-Regular
+
+
+class LoginForm2 {
+    - RectangleButton button
+    + void display()
+}
+
+class LoginForm1 {
+    - CircleButton button
+    + void display()
+}
+
+class CircleButton {
+    + void view()
+}
+
+class RectangleButton { 
+    + void view()
+}
+
+LoginForm1 -down-> CircleButton
+LoginForm2 -down-> RectangleButton
+
+@enduml

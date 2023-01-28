@@ -1,0 +1,15 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+package "Object A Access Boundary"  <<Rectangle>> {
+    class "Object A"
+    class "Object B"
+}
+"Object A" .right.> "Object B"
+"Object B" *--right-- "Object C"
+
+hide methods
+hide members
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class MainClass {
+    + void main(String args[])
+}
+
+class LoginForm {
+    - UserDAO dao
+    + void init()
+    + void display()
+    + void validate()
+}
+
+class UserDAO {
+    - DBUtils db
+    + boolean findUser(String userName, 
+        String userPassword)
+}
+
+class DBUtil {
+    + Connection getConnection()
+}
+
+MainClass .right.> LoginForm
+LoginForm -right-> UserDAO
+UserDAO -right-> DBUtil
+
+@enduml

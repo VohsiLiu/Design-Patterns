@@ -1,0 +1,34 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Transform{
+    + void move()
+}
+class Changer{
+    - Transform transform
+    + Changer(Transform transform)
+    + void move()
+}
+class Car{
+    + Car()
+    + void move()
+}
+class Robot{
+    + Robot()
+    + void say()
+}
+class Airplane{
+    + Airplane(Transform transform)
+    + void fly()
+}
+
+Transform <|.. Car
+Transform <--o "transform" Changer
+Transform <|.. Changer
+Changer <|-- Robot
+Changer <|-- Airplane
+
+Transform -[hidden]down- Car
+
+@enduml

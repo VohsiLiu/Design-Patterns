@@ -1,0 +1,39 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+note as config
+    config.xml
+end note
+
+note right of config
+    ...
+    <className>CipherB</className>
+    ...
+end note
+
+class Client {
+    + void main(String args[])
+}
+
+class DataOperator {
+    - CipherA cipherA
+    + void setCipherA(CipherA cipherA)
+    + String encrypt(String plainText)
+}
+
+class CipherA {
+    + String encrypt(String plainText)
+}
+
+class CipherB {
+    + String encrypt(String plainText)
+}
+
+Client .up.> config
+Client .down.> DataOperator
+Client ..> CipherA
+DataOperator -right-> CipherA
+CipherB --|> CipherA
+
+@enduml

@@ -1,0 +1,26 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class MainClass {
+    + void main(String args[])
+}
+
+class DatabaseSource {
+}
+
+class XMLTransformer {
+}
+
+class TextSource {
+}
+
+class XLSTransformer { 
+}
+
+MainClass -left-> DatabaseSource
+MainClass -right-> XMLTransformer
+MainClass -up-> TextSource
+MainClass -down-> XLSTransformer
+
+@enduml

@@ -1,0 +1,75 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Duck {
+    - FlyBehavior flyBehavior
+    - QuackBehavior quackBehavior
+    + swim()
+    + display()
+    + performQuack()
+    + performFly()
+    + setFlyBehavior()
+    + setQuackBehavior()
+}
+
+class MallarDuck {
+    + display()
+}
+
+class RedheadDuck {
+    + display()
+}
+
+class RubberDuck { 
+    + display()
+}
+
+class DecoyDuck { 
+    + display()
+}
+
+
+MallarDuck -up-|> Duck
+RedheadDuck -up-|> Duck
+RubberDuck -up-|> Duck
+DecoyDuck -up-|> Duck
+
+
+
+package "封装飞行行为" <<Rectangle>>{
+    interface FlyBehavior {
+        + fly()
+    }
+    class FlyWithWings {
+        + fly()
+    }
+    class FlyNoWay {
+        + fly()
+    }
+    Duck::flyBehavior -up-> FlyBehavior
+}
+
+package "封装呱呱叫行为" <<Rectangle>>{
+    interface QuackBehavior {
+        + quack()
+    }
+    class Quack {
+        + quack()
+    }
+    class Squeak {
+        + quack()
+    }
+    class MuteQuack {
+        + quack()
+    }
+    Duck::quackBehavior -up-> QuackBehavior
+}
+
+FlyWithWings .up.|> FlyBehavior
+FlyNoWay .up.|> FlyBehavior
+Quack .up.|> QuackBehavior
+Squeak .up.|> QuackBehavior
+MuteQuack .up.|> QuackBehavior
+
+@enduml

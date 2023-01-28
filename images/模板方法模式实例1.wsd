@@ -1,0 +1,30 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class BankTemplateMethod{
+    + void takeNumber()
+    + void transact()
+    + void evaluate()
+    + void process()
+}
+note left of BankTemplateMethod::process
+takeNumber();
+transact();
+evaluate();
+end note
+class Deposit{
+    + void transact()
+}
+class Withdraw{
+    + void transact()
+}
+class Transfer{
+    + void transact()
+}
+
+BankTemplateMethod <|-- Deposit
+BankTemplateMethod <|-- Withdraw
+BankTemplateMethod <|-- Transfer
+
+@enduml

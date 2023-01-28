@@ -1,0 +1,28 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class FlyweightFactory{
+    - flyweights
+    + getFlyweight(String key)
+}
+interface Flyweight{
+    + operation(extrinsicState)
+}
+class ConcreteFlyweight{
+    - intrinsicState
+    + operation(extrinsicState)
+}
+class CompositeConcreteFlyweight{
+    - flyweights
+    + operation(extrinsicState)
+    + add(Flyweight flyweight)
+    + remove(Flyweight flyweight)
+}
+
+FlyweightFactory "flyweights" o--> Flyweight
+Flyweight <|.. ConcreteFlyweight
+Flyweight <|.. CompositeConcreteFlyweight
+Flyweight <--o CompositeConcreteFlyweight
+
+@enduml

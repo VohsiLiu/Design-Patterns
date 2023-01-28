@@ -1,0 +1,40 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Target{
+    + request()
+}
+interface Adaptee{
+    + specificRequest()
+}
+class ConcreteTarget{
+    + request()
+}
+class Adapter{
+    - Adaptee adaptee
+    - Target target
+    + request()
+    + specificRequest()
+    + setTarget(Target target)
+    + setAdaptee(Adaptee adaptee)
+}
+note left of Adapter::request
+adaptee.specificRequest();
+end note
+note right of Adapter::specificRequest
+target.request();
+end note
+class ConcreteAdaptee{
+    + specificRequest()
+}
+
+Target <|.. ConcreteTarget
+Target <-- "target" Adapter
+Target <|.. Adapter
+Adaptee <-- "adaptee" Adapter
+Adaptee <|.. Adapter
+
+Adaptee <|.. ConcreteAdaptee
+
+@enduml

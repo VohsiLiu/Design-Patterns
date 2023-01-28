@@ -1,0 +1,44 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class OperatingSystemVersion{
+    # VideoFile vf
+    + void setVideoFile(VideoFile vf)
+    + void play(String fileName)
+}
+class WindowsVersion{
+    + void play(String fileName)
+}
+class UnixVersion{
+    + void play(String fileName)
+}
+class LinuxVersion{
+    + void play(String fileName)
+}
+interface VideoFile{
+    + void decode(String osType, String fileName)
+}
+class MPEGFile{
+    + void decode(String osType, String fileName)
+}
+class RMVBFile{
+    + void decode(String osType, String fileName)
+}
+class AVIFile{
+    + void decode(String osType, String fileName)
+}
+class WMVFile{
+    + void decode(String osType, String fileName)
+}
+
+OperatingSystemVersion <|-up- WindowsVersion
+OperatingSystemVersion <|-- UnixVersion
+OperatingSystemVersion <|-- LinuxVersion
+OperatingSystemVersion "vf" o-> VideoFile
+VideoFile <|.. MPEGFile
+VideoFile <|.. RMVBFile
+VideoFile <|.up. AVIFile
+VideoFile <|.up. WMVFile
+
+@enduml

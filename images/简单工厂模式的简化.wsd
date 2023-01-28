@@ -1,0 +1,15 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Product {
+    + Product factoryMethod(String arg)
+}
+
+ConcreteProductA -up-|> Product
+ConcreteProductB -up-|> Product
+Product ..> ConcreteProductA
+Product ..> ConcreteProductB
+
+ConcreteProductA -[hidden]right-> ConcreteProductB
+@enduml

@@ -1,0 +1,29 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface WindowListener{
+    + windowOpened(WindowEvent e)
+    + windowClosing(WindowEvent e)
+    + windowClosed(WindowEvent e)
+    + windowIconified(WindowEvent e)
+    + windowDeiconified(WindowEvent e)
+    + windowActivated(WindowEvent e)
+    + windowDeactivated(WindowEvent e)
+}
+abstract class WindowAdapter{
+    + windowOpened(WindowEvent e)
+    + windowClosing(WindowEvent e)
+    + windowClosed(WindowEvent e)
+    + windowIconified(WindowEvent e)
+    + windowDeiconified(WindowEvent e)
+    + windowActivated(WindowEvent e)
+    + windowDeactivated(WindowEvent e)
+    + windowStateChanged(WindowEvent e)
+    + windowGainedFocus(WindowEvent e)
+    + windowLostFocus(WindowEvent e)
+}
+
+WindowListener <|.. WindowAdapter
+
+@enduml

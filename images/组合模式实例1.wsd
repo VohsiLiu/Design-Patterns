@@ -1,0 +1,30 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class MyElement{
+    + void eat()
+}
+class Apple{
+    + void eat()
+}
+class Banana{
+    + void eat()
+}
+class Pear{
+    + void eat()
+}
+class Plate{
+    - ArrayList list
+    + void eat()
+    + void add(MyElement element)
+    + void remove(MyElement element)
+}
+
+MyElement <|-- Apple
+MyElement <|-- Banana
+MyElement <|-- Pear
+MyElement <|-- Plate
+MyElement <--o "list" Plate
+
+@enduml

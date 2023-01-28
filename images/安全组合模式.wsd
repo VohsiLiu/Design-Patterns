@@ -1,0 +1,22 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Component{
+    + operation()
+}
+class Leaf{
+    + operation()
+}
+class Composite{
+    + operation()
+    + add(Component c)
+    + remove(Component c)
+    + getChild(int i)
+}
+
+Component <|-- Leaf
+Component <--o "children" Composite
+Component <|-- Composite
+
+@enduml

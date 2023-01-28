@@ -1,0 +1,28 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Cloneable{
+}
+
+class Object{
+    + Object clone()
+}
+
+class Email{
+    - Attachment attachment
+    + Email()
+    + Object clone()
+    + void display()
+    + Attachment getAttachment()
+}
+
+class Attachment{
+    + void download()
+}
+
+Object <|-- Email
+Cloneable <|.. Email
+Attachment <--* Email
+
+@enduml

@@ -1,0 +1,50 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+left to right direction
+
+abstract class Pen{
+    # Color color
+    + void setColor(Color color)
+    + void draw(String name)
+}
+class SmallPen{
+    + void draw(String name)
+}
+class MiddlePen{
+    + void draw(String name)
+}
+class BigPen{
+    + void draw(String name)
+}
+interface Color{
+    + void bepaint(String penType, 
+    String name)
+}
+class Red{
+    + void bepaint(String penType, String name) 
+}
+class Green{
+    + void bepaint(String penType, String name) 
+}
+class Blue{
+    + void bepaint(String penType, String name) 
+}
+class White{
+    + void bepaint(String penType, String name) 
+}
+class Black{
+    + void bepaint(String penType, String name) 
+}
+
+Pen <|- SmallPen
+Pen <|-left- BigPen
+Pen <|-up- MiddlePen
+Pen "color" o--> Color
+Color <|.. Red
+Color <|.. Green
+Color <|.. Blue
+Color <|.. White
+Color <|.. Black
+
+@enduml

@@ -1,0 +1,50 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface EFactory{
+    + Television produceTelevision()
+    + AirConditioner produceAirConditioner()
+}
+class HaierFactory{
+    + Television produceTelevision()
+    + AirConditioner produceAirConditioner()
+}
+class TCLFactory{
+    + Television produceTelevision()
+    + AirConditioner produceAirConditioner()
+}
+
+interface Television{
+    + void play()
+}
+class TCLTelevision{
+    + void play()
+}
+class HaierTelevision{
+    + void play()
+}
+
+interface AirConditioner{
+    + void changeTemperature()
+}
+class HaierAirConditioner{
+    + void changeTemperature()
+}
+class TCLAirConditioner{
+    + void changeTemperature()
+}
+
+EFactory <|.. HaierFactory
+EFactory <|.. TCLFactory
+Television <|.up. HaierTelevision
+Television <|.up. TCLTelevision
+AirConditioner <|.up. HaierAirConditioner
+AirConditioner <|.up. TCLAirConditioner
+
+HaierFactory ..> HaierTelevision
+HaierFactory ..> HaierAirConditioner
+TCLFactory ..> TCLTelevision
+TCLFactory ..> TCLAirConditioner
+
+@enduml

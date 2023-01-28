@@ -1,0 +1,26 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class ConcreteComponent{
+    + operation()
+}
+class Decorator{
+    + Decorator(ConcreteComponent component)
+    + operation()
+}
+class ConcreteDecoratorA{
+    - addedState
+    + operation()
+}
+class ConcreteDecoratorB{
+    + operation()
+    + addedBehavior()
+}
+
+ConcreteComponent <--o "component" Decorator
+ConcreteComponent <|-- Decorator
+Decorator <|-- ConcreteDecoratorA
+Decorator <|-- ConcreteDecoratorB
+
+@enduml

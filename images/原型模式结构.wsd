@@ -1,0 +1,33 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Client{
+    - Prototype prototype
+    - Prototype copy
+    + operation()
+}
+
+class Prototype{
+    + Prototype clone()
+}
+class ConcretePrototypeA{
+    + Prototype clone()
+}
+class ConcretePrototypeB{
+    + Prototype clone()
+}
+
+note bottom of Client
+copy = prototype.clone();
+end note
+
+note "return copy of self;" as n1
+ConcretePrototypeA -- n1
+ConcretePrototypeB -- n1
+
+Client -> Prototype : "prototype"
+Prototype <|-- ConcretePrototypeA
+Prototype <|-- ConcretePrototypeB
+
+@enduml

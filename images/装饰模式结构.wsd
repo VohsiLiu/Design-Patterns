@@ -1,0 +1,38 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Componet{
+    + operation()
+}
+class ConcreteComponet{
+    + operation()
+}
+class Decorator{
+    + operation()
+}
+note left of Decorator::operation
+componet.operation();
+end note
+class ConcreteDecoratorA{
+    - addedState
+    + operation()
+}
+class ConcreteDecoratorB{
+    + operation()
+    + addedBehavior()
+}
+note right of ConcreteDecoratorB::operation
+super.operation();
+addedBehavior();
+end note
+
+Componet <|-- ConcreteComponet
+Componet <--o "componet" Decorator
+Componet <|-- Decorator
+Decorator <|-- ConcreteDecoratorA
+Decorator <|-- ConcreteDecoratorB
+
+ConcreteDecoratorA -[hidden]right- ConcreteDecoratorB
+
+@enduml

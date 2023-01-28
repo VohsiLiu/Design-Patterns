@@ -1,0 +1,28 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class AbstractFacade{
+    + void method1()
+    + void method2()
+}
+class ConcreteFacede1{
+    + void method1()
+    + void method2()
+}
+class ConcreteFacede2{
+    + void method1()
+    + void method2()
+}
+
+Client .> AbstractFacade
+AbstractFacade <|-- ConcreteFacede1
+AbstractFacade <|-- ConcreteFacede2
+ConcreteFacede1 --> SubSystem1
+ConcreteFacede1 --> SubSystem2
+ConcreteFacede1 --> SubSystem3
+ConcreteFacede2 --> SubSystem3
+ConcreteFacede2 --> SubSystem4
+ConcreteFacede2 --> SubSystem5
+
+@enduml

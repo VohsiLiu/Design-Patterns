@@ -1,0 +1,15 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+报表显示 o-> 数据采集
+报表显示 <|-- 报表显示方式1
+报表显示 <|-- 报表显示方式2
+数据采集 <|-- 读取文本文件
+数据采集 <|-- 读取数据库
+数据采集 <|-- 读取Excel文件
+"Excel API" <--* 读取Excel文件
+
+数据采集 -[hidden]down- 读取Excel文件
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Meal{
+    - String food;
+    - String drink;
+    + void setFood(String food)
+    + void setDrink(String drink)
+    + String getFood()
+    + String getDrink()
+}
+
+class KFCWaiter{
+    - MealBuilder mb
+    + void setMealBuilder(MealBuilder mb)
+    + Meal construct()
+}
+note bottom of KFCWaiter
+mb.buildFood();
+mb.buildDrink();
+return mb.getMeal();
+end note
+
+abstract class MealBuilder{
+    - Meal meal
+    + void buildFood();
+    + void buildDrink();
+    + Meal getMeal();
+}
+class SubMealBuilderA{
+    + void buildFood();
+    + void buildDrink();
+}
+class SubMealBuilderB{
+    + void buildFood();
+    + void buildDrink();
+}
+
+Meal <--* "meal" MealBuilder 
+KFCWaiter o-> MealBuilder : mb
+SubMealBuilderA -up-|> MealBuilder
+SubMealBuilderB -up-|> MealBuilder
+
+SubMealBuilderA -[hidden]right- SubMealBuilderB
+@enduml

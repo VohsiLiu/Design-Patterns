@@ -1,0 +1,25 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Prototype{
+    + Prototype clone()
+}
+class ConcretePrototypeA{
+    + Prototype clone()
+}
+class ConcretePrototypeB{
+    + Prototype clone()
+}
+class PrototypeManager{
+    - Hashtable prototypeTable
+    + void add(String key, Prototype prototype)
+    + Prototype get(String key)
+}
+
+Client --> PrototypeManager : "<<create>>"
+Client -> Prototype
+Prototype <|-- ConcretePrototypeA
+Prototype <|-- ConcretePrototypeB
+
+@enduml

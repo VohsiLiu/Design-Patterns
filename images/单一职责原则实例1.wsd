@@ -1,0 +1,14 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Login {
+    + void init()
+    + void display()
+    + void validate()
+    + Connection getConnection()
+    + boolean findUser(String userName, String userPassword)
+    + void main(String args[])
+}
+
+@enduml

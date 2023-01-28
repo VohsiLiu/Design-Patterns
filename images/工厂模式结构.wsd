@@ -1,0 +1,24 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Product{
+}
+
+interface Factory{
+    + Product factoryMethod()
+}
+
+class ConcreteFactory{
+    + Product factoryMethod()
+}
+
+note right of ConcreteFactory::factoryMethod
+return new ConcreteProduct();
+end note
+
+ConcreteFactory .up.|> Factory
+ConcreteProduct .up.|> Product
+ConcreteFactory .left.> ConcreteProduct : <<create>>
+
+@enduml

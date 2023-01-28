@@ -1,0 +1,322 @@
+\section{面向对象设计原则}
+
+\subsection{面向对象设计原则概述}
+
+\subsubsection{软件的可维护性和重用性}
+知名软件大师Robert C.Martin认为一个可维护性(Maintainability)较低的软件设计，通常由于如下4个原因造成：
+\vspace{-0.8em}
+\begin{multicols}{2}
+    \begin{itemize}
+        \item 过于僵硬(Rigidity)
+        \item 过于脆弱(Fragility)
+        \item 复用率低(Immobility)
+        \item 黏度过高(Viscosity)
+    \end{itemize}
+    \end{multicols}
+\vspace{-1em}
+
+软件工程和建模大师Peter Coad认为，一个好的系统设计应该具备如下三个性质：
+\vspace{-0.8em}
+\begin{multicols}{3}
+    \begin{itemize}
+        \item 可扩展性(Extensibility)
+        \item 灵活性(Flexibility)
+        \item 可插入性(Pluggability)
+    \end{itemize}
+    \end{multicols}
+\vspace{-1em}
+
+软件的可维护性和可复用性
+\begin{itemize}
+    \item 软件的\textbf{复用}(Reuse)或\textbf{重用}拥有众多优点，如可以提高软件的开发效率，提高软件质量，节约开发成本，\textbf{恰当的复用还可以改善系统的可维护性}。
+    \item 面向对象设计复用的目标在于\textbf{实现支持可维护性的复用}。 
+    \item 在面向对象的设计里面，\textbf{可维护性复用都是以面向对象设计原则为基础的}，这些设计原则首先都是复用的原则，遵循这些设计原则可以有效地提高系统的复用性，同时提高系统的可维护性。
+    \item 面向对象设计原则也是对系统进行合理重构的指南针，\textbf{重构} (Refactoring)是在不改变软件现有功能的基础上，通过调整程序代码改善软件的质量、性能，使其程序的设计模式和架构更趋合理，提高软件的扩展性和维护性。
+\end{itemize}
+
+\subsubsection{面向对象设计原则}
+常用的面向对象设计原则包括7个，这些原则并不是孤立存在的，它们相互依赖，相互补充。
+\vspace{-0.5em}
+\begin{spacing}{1.2}
+    \centering
+    \begin{longtable}{|W{c}{6cm}|m{6.8cm}|W{c}{1.5cm}|}
+        \hline
+        设计原则名称    & \multicolumn{1}{c|}{设计原则简介}     & 重要性   \\ \hline
+        \begin{tabular}[c]{@{}c@{}}单一职责原则\\ (Single Responsibility Principle, SRP)\end{tabular} & 类的职责要单一，不能将太多的职责放在一个类中                                                      & \ding{72}\ding{72}\ding{72}\ding{72}\ding{73} \\ \hline
+        \begin{tabular}[c]{@{}c@{}}开闭原则\\ (Open-Closed Principle, OCP)\end{tabular}             & 软件实体对扩展是开放的，但对修改是关闭的，即在不修改一个软件实体的基础上去扩展其功能                                 & \ding{72}\ding{72}\ding{72}\ding{72}\ding{72} \\ \hline
+        \begin{tabular}[c]{@{}c@{}}里氏代换原则\\ (Liskov Substitution Principle, LSP)\end{tabular}   & 在软件系统中，一个可以接受基类对象的地方必然可以接受一 个子类对象                                           & \ding{72}\ding{72}\ding{72}\ding{72}\ding{73} \\ \hline
+        \begin{tabular}[c]{@{}c@{}}依赖倒转原则\\ (Dependency Inversion Principle, DIP)\end{tabular}  & 要针对抽象层编程，而不要针对具体类编程                                                         & \ding{72}\ding{72}\ding{72}\ding{72}\ding{72} \\ \hline
+        \begin{tabular}[c]{@{}c@{}}接口隔离原则\\ (Interface Segregation Principle, ISP)\end{tabular} & 使用多个专门的接口来取代一个统一的接口                                                         & \ding{72}\ding{72}\ding{73}\ding{73}\ding{73} \\ \hline
+        \begin{tabular}[c]{@{}c@{}}合成复用原则\\ (Composite Reuse Principle, CRP)\end{tabular}       & 在系统中应该尽量多使用组合和聚合关联关系，尽量少使用甚至不使用继承关系                                        & \ding{72}\ding{72}\ding{72}\ding{72}\ding{73} \\ \hline
+        \begin{tabular}[c]{@{}c@{}}迪米特法则\\ (Law of Demeter, LoD)\end{tabular}                   & 一个软件实体对其他实体的引用越少越好，或者说如果两个类 不必彼此直接通信，那么这两个类就不应当发生直接的相互作用，而是通过引入一个第三者发生间接交互 & \ding{72}\ding{72}\ding{72}\ding{73}\ding{73} \\ \hline
+    \end{longtable}
+\end{spacing}
+\vspace{-1em}
+
+\subsection{单一职责原则}
+
+\subsubsection{单一职责原则定义}
+单一职责原则(Single Responsibility Principle, SRP)定义为：\textbf{一个对象应该只包含单一的职责，并且该职责被完整地封装在一个类中}。Every object should have a single responsibility, and that responsibility should be entirely encapsulated by the class.
+
+另一种定义方式为：\textbf{就一个类而言，应该仅有一个引起它变化的原因}。There should never be more than one reason for a class to change.
+
+\subsubsection{单一职责原则分析}
+\begin{itemize}
+    \item 一个类（或者大到模块，小到方法）\textbf{承担的职责越多，它被复用的可能性越小}，而且如果一个类承担的职责过多，就相当于将这些职责耦合在一起，当其中一个职责变化时，可能会影响其他职责的运作。
+    \item 类的职责主要包括两个方面:数据职责和行为职责，数据职责通过其属性来体现，而行为职责通过其方法来体现。
+    \item 单一职责原则是实现\textbf{高内聚、低耦合}的指导方针，在很多代码重构手法中都能找到它的存在，它是最简单但又最难运用的原则，需要设计人员发现类的不同职责并将其分离，而发现类的多重职责需要设计人员具有较强的分析设计能力和相关重构经验。
+\end{itemize}
+
+\subsubsection{单一职责原则实例}
+某基于Java的C/S系统的“登录功能”通过如下登录类(Login)实现
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.55\textwidth]{images/单一职责原则实例1.eps}
+    \vspace{-1em}
+\end{figure}
+
+使用单一职责原则对其进行重构如下
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=\textwidth]{images/单一职责原则实例2.eps}
+    \vspace{-1em}
+\end{figure}
+
+\subsection{开闭原则}
+
+\subsubsection{开闭原则定义}
+开闭原则(Open-Closed Principle, OCP)定义为：一个软件实体应当\textbf{对扩展开放，对修改关闭}。也就是说在设计一个模块的时候，应当使这个模块可以在不被修改的前提下被扩展，即实现在不修改源代码的情况下改变这个模块的行为。Software entities should be open for extension, but closed for modification.
+
+\subsubsection{开闭原则分析}
+\begin{itemize}
+    \item 开闭原则由Bertrand Meyer于1988年提出，它是面向对象设计中最重要的原则之一。
+    \item 在开闭原则的定义中，软件实体可以指一个软件模块、一个由多个类组成的局部结构或一个独立的类。
+    \item \textbf{抽象化}是开闭原则的关键。
+    \item 开闭原则还可以通过一个更加具体的“\textbf{对可变性封装原则}”来描述，对可变性封装原则(Principle of Encapsulation of Variation, EVP)要求找到系统的可变因素并将其封装起来。
+\end{itemize}
+
+\subsubsection{开闭原则实例}
+某图形界面系统提供了各种不同形状的按钮，客户端代码可针对这些按钮进行编程，用户可能会改变需求要求使用不同的按钮，原始设计方案如图所示
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.5\textwidth]{images/开闭原则实例1.eps}
+    \vspace{-1em}
+\end{figure}
+
+现对该系统进行重构，使之满足开闭原则的要求：尝试将代码变为数据（配置文件\;\verb|config.xml|）结合Java的反射机制完成
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.55\textwidth]{images/开闭原则实例2.eps}
+    \vspace{-1em}
+\end{figure}
+
+\subsection{里氏代换原则}
+
+\subsubsection{里氏代换原则定义}
+里氏代换原则(Liskov Substitution Principle, LSP)有两种定义方式，第一种定义方式相对严格，其定义为：
+如果对每一个类型为$S$的对象$O_1$，都有类型为$T$的对象$O_2$，使得以$T$定义的所有程序$P$在所有的对象$O_2$都代换成$O_1$时，程序$P$的行为没有变化，那么类型$S$是类型$T$的子类型。If for each object $O_1$ of type $S$ there is an object $O_2$ of type $T$ such that for all programs $P$ defined in terms of $T$, the behavior of $P$ is unchanged when $O_1$ is substituted for $O_2$ then $S$ is a subtype of $T$.
+
+第二种更容易理解的定义方式为：\textbf{所有引用基类（父类）的地方必须能透明地使用其子类的对象}。Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it.
+
+\subsubsection{里氏代换原则分析}
+\begin{itemize}
+    \item 里氏代换原则由2008年图灵奖得主、美国第一位计算机科学女博士、麻省理工学院教授Barbara Liskov和卡内基·梅隆大学Jeannette Wing教授于1994年提出。
+    \item 里氏代换原则可以通俗表述为：\textbf{在软件中如果能够使用基类对象，那么一定能够使用其子类对象}。把基类都替换成它的子类，程序将不会产生任何错误和异常，反过来则不成立，如果一个软件实体使用的是一个子类的话，那么它不一定能够使用基类。
+    \item 里氏代换原则是实现开闭原则的重要方式之一，由于使用基类对象的地方都可以使用子类对象，因此\textbf{在程序中尽量使用基类类型来对对象进行定义，而在运行时再确定其子类类型，用子类对象来替换父类对象}。
+\end{itemize}
+
+\subsubsection{里氏代换原则实例}
+某系统需要实现对重要数据（如用户密码）的加密处理，在数据操作类(\verb|DataOperator|)中需要调用加密类中定义的加密算法，系统提供了两个不同的加密类\;\verb|CipherA|\;和\;\verb|CipherB|，它们实现不同的加密方法，在\;\verb|DataOperator|\;中可以选择其中的一个实现加密操作。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/里氏代换原则实例1.eps}
+    \vspace{-1em}
+\end{figure}
+
+也可以为\;\verb|CipherA|\;和\;\verb|CipherB|\;设计一个共同的父类，下面是指\;\verb|CipherB|\;是在\;\verb|CipherA|\;的基础上加密。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.65\textwidth]{images/里氏代换原则实例2.eps}
+    \vspace{-1em}
+\end{figure}
+
+\subsection{依赖倒转原则}
+
+\subsubsection{依赖倒转原则定义}
+依赖倒转原则(Dependence Inversion Principle, DIP)的定义为：\textbf{高层模块不应该依赖低层模块，它们都应该依赖抽象。抽象不应该依赖于细节，细节应该依赖于抽象。}High level modules should not depend upon low level modules, both should depend upon abstractions. Abstractions should not depend upon details, details should depend upon abstractions.
+
+另一种表述为：\textbf{要针对接口编程，不要针对实现编程}。Program to an interface, not an implementation.
+
+\subsubsection{依赖倒转原则分析}
+\begin{itemize}
+    \item 简单来说，依赖倒转原则就是指：\textbf{代码要依赖于抽象的类，而不要依赖于具体的类；要针对接口或抽象类编程，而不是针对具体类编程}。
+    \item 实现开闭原则的关键是抽象化，并且从抽象化导出具体化实现，如果说\textbf{开闭原则是面向对象设计的目标的话}，那么\textbf{依赖倒转原则就是面向对象设计的主要手段}。
+    \item 依赖倒转原则的常用实现方式之一是在代码中使用抽象类，而将具体类放在配置文件：\textbf{将抽象放进代码，将细节放进元数据}。
+\end{itemize}
+
+类之间的耦合关系有零耦合关系、具体耦合关系和抽象耦合关系
+\begin{itemize}
+    \item 零耦合关系：两个类没有依赖关系
+    \item 具体耦合关系：两个具体的类之间有依赖关系，表现为一个具体类直接引用另外一个具体类
+    \item 抽象耦合关系：发生在一个具体类和一个抽象类之间，这样就使必须发生关系的类之间保持最大的灵活性
+\end{itemize}
+
+依赖倒转原则要求客户端依赖于抽象耦合，\textbf{以抽象方式耦合是依赖倒转原则的关键}。
+
+\subsubsection{依赖倒转原则实例}
+某系统提供一个数据转换模块，可以将来自不同数据源的数据转换成多种格式，如可以转换来自数据库的数据(\verb|DatabaseSource|)、也可以转换来自文本文件的数据(\verb|TextSource|)，转换后的格式可以是XML文件(\verb|XMLTransformer|)、也可以是XLS文件(\verb|XLSTransformer|)等。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.55\textwidth]{images/依赖倒转原则实例1.eps}
+    \vspace{-1em}
+\end{figure}
+
+由于需求的变化，该系统可能需要增加新的数据源或者新的文件格式，每增加一个新的类型的数据源或者新的类型的文件格式，客户类\;\verb|MainClass|\;都需要修改源代码，以便使用新的类，但违背了开闭原则。现使用依赖倒转原则对其进行重构。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/依赖倒转原则实例2.eps}
+    \vspace{-1em}
+\end{figure}
+
+\subsection{接口隔离原则}
+
+\subsubsection{接口隔离原则定义}
+接口隔离原则(Interface Segregation Principle, ISP)的定义为：\textbf{客户端不应该依赖那些它不需要的接口}。Clients should not be forced to depend upon interfaces that they do not use.
+\begin{itemize}
+    \item 在该定义中的接口指的是所定义的方法。
+\end{itemize}
+
+另一种定义方法如下：\textbf{一旦一个接口太大，则需要将它分割成一些更细小的接口}，使用该接口的客户端仅需知道与之相关的方法即可。Once an interface has gotten too fat it needs to be split into smaller and more specific interfaces so that any clients of the interface will only know about the methods that pertain to them.
+
+\subsubsection{接口隔离原则分析}
+\begin{itemize}
+    \item 接口隔离原则是指\textbf{使用多个专门的接口，而不使用单一的总接口}。每一个接口应该承担一种相对独立的角色，不多不少，不干不该干的事，该干的事都要干。
+    \begin{itemize}
+        \item 一个接口就\textbf{只代表一个角色}，每个角色都有它特定的一个接口，此时这个原则可以叫做“角色隔离原则”。
+        \item 接口\textbf{仅仅提供客户端需要的行为}，即所需的方法，客户端不需要的行为则隐藏起来，应当为客户端提供尽可能小的单独的接口，而不要提供大的总接口。
+    \end{itemize}
+    \item 使用接口隔离原则拆分接口时，\textbf{首先必须满足单一职责原则}，将一组相关的操作定义在一个接口中，且在满足高内聚的前提下，接口中的方法越少越好。
+    \item 可以在进行系统设计时采用\textbf{定制服务}的方式，即\textbf{为不同的客户端提供宽窄不同的接口}，只提供用户需要的行为，而隐藏用户不需要的行为。
+\end{itemize}
+
+\subsubsection{接口隔离原则实例}
+下图展示了一个拥有多个客户类的系统，在系统中定义了一个巨大的接口（胖接口）\verb|AbstractService|\;来服务所有的客户类。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/接口隔离原则实例1.eps}
+    \vspace{-1em}
+\end{figure}
+
+使用接口隔离原则对其进行重构如下。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.6\textwidth]{images/接口隔离原则实例2.eps}
+    \vspace{-1em}
+\end{figure}
+
+\subsection{合成复用原则}
+
+\subsubsection{合成复用原则定义}
+合成复用原则(Composite Reuse Principle, CRP)又称为组合/聚合复用原则(Composition/ Aggregate Reuse Principle, CARP)，其定义为：\textbf{尽量使用对象组合，而不是继承来达到复用的目的}。Favor composition of objects over inheritance as a reuse mechanism.
+
+\subsubsection{合成复用原则分析}
+在面向对象设计中，可以通过两种基本方法在不同的环境中复用已有的设计和实现，即通过组合/ 聚合关系或通过继承。
+\begin{itemize}
+    \item 继承复用：实现简单，易于扩展。破坏系统的封装性；从基类继承而来的实现是静态的，不可能在运行时发生改变，没有足够的灵活性；只能在有限的环境中使用。（"白箱"复用）
+    \item 组合/聚合复用：耦合度相对较低，选择性地调用成员对象的操作；可以在运行时动态进行。（"黑箱"复用）
+\end{itemize}
+
+合成复用原则就是指在一个新的对象里通过关联关系（包括组合关系和聚合关系）来使用一些已有的对象，使之成为新对象的一部分；新对象通过委派调用已有对象的方法达到复用其已有功能的目的。简言之：\textbf{要尽量使用组合/聚合关系，少用继承}。
+
+组合/聚合可以\textbf{使系统更加灵活}，类与类之间的\textbf{耦合度降低}，一个类的变化对其他类造成的影响相对较少，因此一般\textbf{首选使用组合/聚合来实现复用}；其次才考虑继承，在使用继承时，需要严格遵循里氏代换原则，有效使用继承会有助于对问题的理解，降低复杂度，而滥用继承反而会增加系统构建和维护的难度以及系统的复杂度，因此需要\textbf{慎重使用继承复用}。
+
+\subsubsection{合成复用原则实例}
+某教学管理系统部分数据库访问类设计如图所示：
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.7\textwidth]{images/合成复用原则实例1.eps}
+    \vspace{-1em}
+\end{figure}
+
+如果需要更换数据库连接方式，如原来采用JDBC连接数据库，现在采用数据库连接池连接，则需要修改\;\verb|DBUtil|\;类源代码。如果\;\verb|StudentDAO|\;采用JDBC连接，但是\;\verb|TeacherDAO|\;采用连接池连接，则需要增加一个新的\;\verb|DBUtil|\;类，并修改\;\verb|StudentDAO|\;或\;\verb|TeacherDAO|\;的源代码，使之继承新的数据库连接类，这将违背开闭原则，系统扩展性较差。
+
+现使用合成复用原则对其进行重构。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.75\textwidth]{images/合成复用原则实例2.eps}
+    \vspace{-1em}
+\end{figure}
+
+\subsection{迪米特法则}
+
+\subsubsection{迪米特法则定义}
+迪米特法则(Law of Demeter, LoD)又称为最少知识原则(Least Knowledge Principle, LKP)，它有多种定义方法，其中几种典型定义如下：
+\begin{itemize}
+    \item \textbf{不要和“陌生人”说话。}Don't talk to strangers.
+    \item \textbf{只与你的直接朋友通信。}Talk only to your immediate friends.
+    \item \textbf{每一个软件单位对其他的单位都只有最少的知识，而且局限于那些与本单位密切相关的软件单位。}Each unit should have only limited knowledge about other units: only units ``closely'' related to the current unit.
+\end{itemize}
+
+\subsubsection{迪米特法则分析}
+\begin{itemize}
+    \item 迪米特法则来自于1987年秋美国东北大学一个名为``Demeter''的研究项目。
+    \item 简单地说，迪米特法则就是指\textbf{一个软件实体应当尽可能少的与其他实体发生相互作用}。这样，当一个模块修改时，就会尽量少的影响其他的模块，扩展会相对容易，这是对软件实体之间通信的限制，它要求限制软件实体之间通信的宽度和深度。
+\end{itemize}
+
+在迪米特法则中，对于一个对象，其“朋友”包括以下几类，若不满足如下条件中的一个，就是“陌生人”
+\begin{enumerate}[label=(\arabic*)]
+    \item 当前对象本身(this)
+    \item 以参数形式传入到当前对象方法中的对象
+    \item 当前对象的成员对象
+    \item 如果当前对象的成员对象是一个集合，那么集合中的元素也都是朋友
+    \item 当前对象所创建的对象
+\end{enumerate}
+
+迪米特法则可分为狭义法则和广义法则。\textbf{在狭义的迪米特法则中，如果两个类之间不必彼此直接通信，那么这两个类就不应当发生直接的相互作用}，如果其中的一个类需要调用另一个类的某一个方法的话，可以\textbf{通过第三者转发这个调用}。
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.45\textwidth]{images/狭义迪米特法则.eps}
+    \vspace{-1em}
+\end{figure}
+\begin{itemize}
+    \item 狭义的迪米特法则：可以降低类之间的耦合，但是会在系统中增加大量的小方法并散落在系统的各个角落，它可以使一个系统的局部设计简化，因为每一个局部都不会和远距离的对象有直接的关联，但是也会\textbf{造成系统的不同模块之间的通信效率降低}，使得系统的不同模块之间不容易协调。
+    \item 广义的迪米特法则：\textbf{指对对象之间的信息流量、流向以及信息的影响的控制}，主要是\textbf{对信息隐藏的控制}。信息的隐藏可以使各个子系统之间脱耦，从而允许它们独立地被开发、优化、使用和修改，同时可以促进软件的复用，由于每一个模块都不依赖于其他模块而存在，因此每一个模块都可以独立地在其他的地方使用。一个系统的规模越大，信息的隐藏就越重要，而信息隐藏的重要性也就越明显。
+\end{itemize}
+
+迪米特法则的主要用途在于\textbf{控制信息的过载}：
+\begin{itemize}
+    \item 在类的划分上，应当尽量\textbf{创建松耦合的类}，类之间的耦合度越低，就越有利于复用，一个处在松耦合中的类一旦被修改，不会对关联的类造成太大波及
+    \item 在类的结构设计上，每一个类都应当\textbf{尽量降低其成员变量和成员函数的访问权限}
+    \item 在类的设计上，只要有可能，\textbf{一个类型应当设计成不变类}
+    \item 在对其他类的引用上，\textbf{一个对象对其他对象的引用应当降到最低}
+\end{itemize}
+
+\subsubsection{迪米特法则实例}
+某系统界面类与数据访问类之间的调用关系较为复杂，如图所示：
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.85\textwidth]{images/迪米特法则实例1.eps}
+    \vspace{-1em}
+\end{figure}
+
+修改如下
+\begin{figure}[H]
+    \vspace{-0.5em}
+	\centering
+	\includegraphics[width=0.55\textwidth]{images/迪米特法则实例2.eps}
+    \vspace{-1em}
+\end{figure}

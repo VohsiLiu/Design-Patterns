@@ -1,0 +1,10 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+Client ..> Facade
+Facade --> SubSystemA
+Facade --> SubSystemB
+Facade --> SubSystemC
+
+@enduml

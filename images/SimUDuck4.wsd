@@ -1,0 +1,30 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class "Duck Class" {
+}
+package "鸭子行为" <<Rectangle>>{
+    class "Flying Behaviors"
+    class "Quacking Behaviors"
+}
+
+note bottom of "Duck Class"
+Duck 类仍是所有鸭子的超类，
+但是飞行和呱呱叫的行为已经
+被取出，放在别的类结构中。
+end note
+
+note "多种行为的实现被放在这里" as n
+n ..> "Flying Behaviors"
+n ..> "Quacking Behaviors"
+
+"Duck Class" .right.> "鸭子行为" : 取出易变化的部分
+
+hide circle
+hide methods
+hide members
+
+"Flying Behaviors" -[hidden]down-> "Quacking Behaviors"
+
+@enduml

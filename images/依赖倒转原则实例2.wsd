@@ -1,0 +1,49 @@
+@startuml 
+
+left to right direction
+skinparam DefaultFontName PingFangSC-Regular
+
+note as config
+    config.xml
+end note
+
+note right of config
+    ...
+    <sourceName>DatabaseSource</sourceName>
+    <transformerName>XMLTransformer</transformerName>
+    ...
+end note
+
+class MainClass {
+    + void main(String args[])
+}
+
+abstract class AbstractSource {
+}
+
+abstract class AbstractTransformer {
+}
+
+class DatabaseSource {
+}
+
+class XMLTransformer {
+}
+
+class TextSource {
+}
+
+class XLSTransformer { 
+}
+
+MainClass .left.> config
+MainClass ..> AbstractTransformer
+MainClass ..> AbstractSource
+TextSource -up-|> AbstractSource
+DatabaseSource -up-|> AbstractSource
+XMLTransformer -up-|> AbstractTransformer
+XLSTransformer -up-|> AbstractTransformer
+
+
+
+@enduml

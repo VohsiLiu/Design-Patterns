@@ -1,0 +1,21 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+interface Robot{
+    + void cry()
+    + void move()
+}
+class Dog{
+    + void woof()
+    + void run()
+}
+class DogAdapter{
+    + void cry()
+    + void move()
+}
+
+Robot <|.. DogAdapter
+Dog <|-- DogAdapter
+
+@enduml

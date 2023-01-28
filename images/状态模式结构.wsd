@@ -1,0 +1,31 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Context{
+    - State state
+    + request()
+    + setState(State state)
+}
+
+note right of Context::setState
+...
+state.handle();
+...
+end note
+
+class State{
+    + handle()
+}
+class ConcreteStateA{
+    + handle()
+}
+class ConcreteStateB{
+    + handle()
+}
+
+Context "state" o--> State
+State <|-- ConcreteStateA
+State <|-- ConcreteStateB
+
+@enduml

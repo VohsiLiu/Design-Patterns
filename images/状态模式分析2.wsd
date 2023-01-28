@@ -1,0 +1,40 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class 房间类{
+    - State state
+    + setState(房间状态类 state)
+    + 预订()
+    + 入住()
+    + 取消预订()
+    + 退房()
+}
+
+class 房间状态类{
+    + 预订()
+    + 入住()
+    + 取消预订()
+    + 退房()
+}
+
+class 空闲状态类{
+    + 预订()
+    + 入住()
+}
+
+class 已预订状态类{
+    + 入住()
+    + 取消预订()
+}
+
+class 已入住状态类{
+    + 退房()
+}
+
+房间类 o-right-> 房间状态类
+房间状态类 <|-- 空闲状态类
+房间状态类 <|-- 已入住状态类
+房间状态类 <|-- 已预订状态类
+
+@enduml

@@ -1,0 +1,39 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class GeneralSwitchFacade{
+    - Light[] lights = new Light[4]
+    - Fan fan
+    - AirConditioner ac
+    - Television tv
+    + GeneralSwitchFacade()
+    + void on()
+    + void off()
+}
+class Light{
+    - String position
+    + Light(String position)
+    + void on()
+    + void off()
+}
+class Fan{
+    + void on()
+    + void off()
+}
+class AirConditioner{
+    + void on()
+    + void off()
+}
+class Television{
+    + void on()
+    + void off()
+}
+
+Client ..> GeneralSwitchFacade
+GeneralSwitchFacade "lights" --> Light
+GeneralSwitchFacade "fan" --> Fan
+GeneralSwitchFacade "ac" --> AirConditioner
+GeneralSwitchFacade "tv" --> Television
+
+@enduml

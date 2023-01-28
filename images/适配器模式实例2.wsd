@@ -1,0 +1,33 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class DataOperator{
+    - String password
+    + void setPassword(String password)
+    + String getPassword()
+    + String doEncrypt(int key, String ps)
+}
+class CipherAdapter{
+    - Caesar cipher
+    + CipherAdapter()
+    + String doEncrypt(int key, String ps)
+}
+class NewCipherAdapter{
+    - NewCipher cipher
+    + NewCipherAdapter()
+    + String doEncrypt(int key, String ps)
+}
+class Caesar{
+    + String doEncrypt(int key, String ps)
+}
+class NewCipher{
+    + String doEncrypt(int key, String ps)
+}
+
+DataOperator <|-- CipherAdapter
+DataOperator <|-- NewCipherAdapter
+CipherAdapter "cipher" *--> Caesar
+NewCipherAdapter "cipher" *--> NewCipher
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+Mediator <-  Colleague
+Mediator <|-- ConcreteMediator
+Colleague <|-- ConcreteColleagueA
+Colleague <|-- ConcreteColleagueB
+ConcreteMediator -> ConcreteColleagueA
+ConcreteMediator -> ConcreteColleagueB
+
+@enduml

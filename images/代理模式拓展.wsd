@@ -1,0 +1,23 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+package 客户端 <<rectangle>>{
+    class 客户端对象{
+    }
+}
+package 本地主机 <<rectangle>>{
+    class 远程代理对象{
+    }
+}
+package 远程主机 <<rectangle>>{
+    class 远程业务对象{
+    }
+}
+
+服务接口 <|-- 远程代理对象
+服务接口 <|-- 远程业务对象
+客户端对象 .> 远程代理对象
+远程代理对象 o-> 远程业务对象
+
+@enduml

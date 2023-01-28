@@ -1,0 +1,29 @@
+@startuml 
+
+skinparam DefaultFontName PingFangSC-Regular
+
+abstract class DBOperator{
+    + void connDB()
+    + void openDB()
+    + void useDB()
+    + void closeDB()
+    + void process()
+}
+note left of DBOperator::process
+connDB();
+openDB();
+useDB();
+closeDB();
+end note
+
+class SQLServerDBOperator{
+    + void connDB()
+}
+class OracleDBOperator{
+    + void connDB()
+}
+
+DBOperator <|-- SQLServerDBOperator
+DBOperator <|-- OracleDBOperator
+
+@enduml

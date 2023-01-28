@@ -1,0 +1,32 @@
+@startuml
+
+skinparam DefaultFontName PingFangSC-Regular
+
+class Observable {
+  - boolean changed
+  - Vector<Observer> obs 
+  + Observable() 
+  + void addObserver(Observer o) 
+  + boolean hasChanged() 
+  # void setChanged() 
+  # void clearChanged() 
+  + void deleteObserver(Observer o) 
+  + void notifyObservers() 
+  + int countObservers() 
+  + void notifyObservers(Object arg) 
+  + void deleteObservers() 
+}
+
+interface Observer{
+  + void update(Observer o, Object arg)
+}
+
+class ConcreteObserver{
+  + void update(Observer o, Object arg)
+}
+
+Observable -> Observer
+Observable <|-- ConcreteObservable
+Observer <|.. ConcreteObserver
+
+@enduml
